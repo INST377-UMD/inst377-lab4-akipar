@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>Lab 4
+        </title>
+        <link rel="stylesheet" href="Lab4.css">
+    </head>
+
+    <body id="body">
+        <!-- Header -->
+         <header>
+            <h1 id="head">INST 377-Lab4</h1>
+         </header>
+
+
+         <!-- main -->
+            <div class="content-area">
+                <div class="left">
+                <div class="content-box">
+                    <!-- Alert Me -->
+                     <form id="AlertMe">
+                        <label for="Name">Name:</label>
+                        <input type="text" name="Name" required>
+    
+                        <input type="submit" value="Alert Me!" >
+                     </form>
+
+                </div>
+                <div class="content-box">
+                    <!-- Text Tester -->
+                     <form id="ValidateText" onsubmit="formValidation()">
+                        <label for="vtext">Text Tester:</label>
+                        <input type="text" id="vtext">
+                        <input type="submit" value="Validate Text">
+                     </form>
+                     
+                </div>
+            </div>
+            <div class="right">
+                <div class="content-box">
+                    <!-- Change Color -->
+                     <button onclick="ChangeColor()">Change Color</button>
+
+                </div>
+                <div class="content-box">
+                    <!-- Add Text -->
+                     <button onclick="AddText()">Add Text</button>
+
+                </div>
+            </div>
+            </div>
+          
+          <!-- JAVA code -->
+           <script type="text/Javascript">
+            document.getElementById('AlertMe').onsubmit = function() {Alert(); return false;};
+            
+            function Alert() {
+                alert('Hi '+ document.getElementById('AlertMe').elements['Name'].value);
+            }
+
+            function ChangeColor(){
+                if(document.getElementById("body").style.backgroundColor == "lightblue") {
+                    document.getElementById("body").style.backgroundColor = "lightgreen";
+                } 
+                else {
+                    document.getElementById("body").style.backgroundColor = "lightblue";
+                }
+            }
+
+            function formValidation(){
+                const validationRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+                if(document.getElementById("vtext").value.trim()=="") {
+                    // remove any whitespace and check if empty 
+                   alert('There is a special character')
+                   
+                   return false;
+                }
+
+                if(validationRegex.test(document.getElementById("vtext").value)) {
+                    alert('There is a special character!')
+                    // If for any reason you want user to stay in the same page, reutrn false 
+                    return false;
+                }
+
+            }
+
+            function AddText(){
+                const h1 = document.getElementById("head");
+                let text = " - Add Text";
+
+                h1.insertAdjacentText("beforeend", text);
+            }
+           </script>
+    </body>
+</html>
